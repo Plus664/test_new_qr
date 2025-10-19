@@ -36,7 +36,7 @@ function startScan() {
 let hasScanned = false;
 let scanLoopId;
 
-document.getElementById("startScanBtn").addEventListener("click", () => {
+document.getElementById("read_button").addEventListener("click", () => {
   navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
     .then(stream => {
       const video = document.getElementById("video");
