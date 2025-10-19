@@ -711,7 +711,7 @@ const print_result = () => {
 // 共有されたレシピの表示
 function renderRecipe(recipe, editable = false) {
   if (!recipe) return;
-
+alert("成功")
   // 名前（なければ生成）
   const name_result = document.getElementById("name_result");
   const name = recipe.name || (() => {
