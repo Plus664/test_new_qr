@@ -1,4 +1,4 @@
-/*let hasScanned = false;
+let hasScanned = false;
 
 function startScan() {
   const qrScanner = new Html5Qrcode("reader");
@@ -32,7 +32,7 @@ function startScan() {
     }*/
   );
 }
-*/
+
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
@@ -70,3 +70,4 @@ $(function() {
         $(this).toggleClass('active');
     });
 });
+
