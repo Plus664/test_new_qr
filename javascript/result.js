@@ -786,7 +786,7 @@ alert(editable);
             location.href = "../html/list.html";
         }
         return;
-    } else {
+    } else {alert("else")
         openIndexedDB();
     }
 
