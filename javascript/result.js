@@ -708,6 +708,56 @@ const print_result = () => {
     window.print();
 };
 
+// 共有されたレシピの表示
+function renderRecipe(recipe, editable = false) {
+  if (!recipe) return;
+
+  // 名前（なければ生成）
+  const name_result = document.getElementById("name_result");
+  const name = recipe.name || (() => {
+    const now = new Date();
+    return `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+  })();
+  name_result.textContent = name;
+
+  // タイプ
+  const type_result = document.getElementById("type_result");
+  const type = recipe.type;
+  type_result.textContent = type === "soda" ? "★タイプ: 固形せっけん" : "★タイプ: 液体せっけん";
+
+  // アルカリ
+  const alkali_result = document.getElementById("alkali_result");
+  alkali_result.textContent = recipe.alkali || "";
+
+  // 油量合計
+  const oil_amount_sum_result = document.getElementById("oil_amount_sum_result");
+  oil_amount_sum_result.textContent = recipe.oilAmountSum || "";
+
+  // 水分量
+  const water_amount_result = document.getElementById("water_amount_result");
+  water_amount_result.textContent = recipe.waterAmount || "";
+
+  // アルコール（液体せっけんのみ）
+  const alcohol_amount_result = document.getElementById("alcohol_amount_result");
+  if (type === "potash") {
+    alcohol_amount_result.textContent = recipe.alcoholAmount || "";
+  } else {
+    alcohol_amount_result.style.display = "none";
+  }
+
+  // オイル・オプション・特徴・条件・メモなど
+  display_oils(recipe.oils);
+  display_options(recipe.options);
+  display_features(recipe.features);
+  display_conditions(recipe.conditions);
+  display_memo(recipe.memo);
+
+  // UI切り替え（QR共有は result モード）
+  pres_button.style.display = "block";
+  print_button.style.display = "none";
+  imgContainer.style.display = "none";
+}
+
 window.onload = () => {
     if(shouldShowLoader_result()) {
         showLoader_result();
@@ -721,7 +771,26 @@ window.onload = () => {
         });
     }, 0);
 
-    openIndexedDB();
+    const params = new URLSearchParams(location.search);
+    const compressed = params.get("data");
+    const editable = params.get("editable") === "true";
+
+    if(compressed) {
+        try {
+            const qrRecipe = JSON.parse(LZString.decompressFromEncodedURIComponent(compressed));
+
+            renderRecipe(qrRecipe, editable);
+            fadeOutLoader_result();
+        } catch(e) {
+            alert("表示に失敗しました");
+            location.href = "../html/list.html";
+        }
+        return;
+    } else {
+        openIndexedDB();
+    }
+
+    //openIndexedDB();
 
     fadeOutLoader_result();
 }
