@@ -762,7 +762,7 @@ window.onload = () => {
     if(shouldShowLoader_result()) {
         showLoader_result();
     }
-
+alert("hi")
     setTimeout(() => {
         window.scrollTo({
             top: 0,
@@ -826,3 +826,4 @@ const fadeOutLoader_result = () => {
         loader.style.display = "none";
     }, 300);
 };
+
