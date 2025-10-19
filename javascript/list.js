@@ -189,7 +189,7 @@ const toggle_favorite = (id) => {
     };
 };
 
-// QRオーバーレイ表示
+// QRオーバーレイ表示（canvas描画 + jsQR対応）
 const open_qr_overlay = (recipe) => {
   const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(recipe));
   const shareURL = `../html/result.html?data=${compressed}&editable=true`;
@@ -222,21 +222,23 @@ const open_qr_overlay = (recipe) => {
   title.style.fontSize = "20px";
   title.style.marginBottom = "12px";
 
-  const qrContainer = document.createElement("div");
-  qrContainer.style.margin = "0 auto";
-  qrContainer.id = "qr-container";
+  const qrCanvas = document.createElement("canvas");
+  qrCanvas.width = 384;
+  qrCanvas.height = 384;
+  qrCanvas.style.margin = "0 auto";
+  qrCanvas.id = "qr-canvas";
 
   box.appendChild(title);
-  box.appendChild(qrContainer);
+  box.appendChild(qrCanvas);
   backdrop.appendChild(box);
   document.body.appendChild(backdrop);
 
   requestAnimationFrame(() => {
-    new QRCode(qrContainer, {
-      text: shareURL,
-      width: 320,
-      height: 320,
-      correctLevel: QRCode.CorrectLevel.L
+    new QRious({
+      element: qrCanvas,
+      value: shareURL,
+      size: 384,
+      level: "M"
     });
   });
 };
