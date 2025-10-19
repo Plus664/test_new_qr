@@ -192,7 +192,8 @@ const toggle_favorite = (id) => {
 // QRオーバーレイ表示（canvas描画 + jsQR対応）
 const open_qr_overlay = (recipe) => {
   const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(recipe));
-  const shareURL = `https://saponis.netlify.app/html/result.html?data=${compressed}&editable=true`;
+  //const shareURL = `https://saponis.netlify.app/html/result.html?data=${compressed}&editable=true`;
+  const shareURL = `../html/result.html`?data=${compressed}&editable=true`;
 
   const backdrop = document.createElement("div");
   backdrop.style.position = "fixed";
@@ -394,7 +395,7 @@ window.onload = () => {
         });
     }, 0);
 */
-alert("変化")
+
     request = indexedDB.open("SoapRecipeDB", 2);
 
     request.onupgradeneeded = function(e) {
