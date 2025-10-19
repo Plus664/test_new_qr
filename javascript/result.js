@@ -775,10 +775,10 @@ window.onload = () => {
     const compressed = params.get("data");
     const editable = params.get("editable") === "true";
 
-    if(compressed) {
+    if(compressed) {alert("compressed")
         try {
             const qrRecipe = JSON.parse(LZString.decompressFromEncodedURIComponent(compressed));
-
+alert(editable);
             renderRecipe(qrRecipe, editable);
             fadeOutLoader_result();
         } catch(e) {
