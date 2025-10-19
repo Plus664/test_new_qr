@@ -193,7 +193,7 @@ const toggle_favorite = (id) => {
 const open_qr_overlay = (recipe) => {
   const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(recipe));
   //const shareURL = `https://saponis.netlify.app/html/result.html?data=${compressed}&editable=true`;
-  const shareURL = `../html/result.html`?data=${compressed}&editable=true`;
+  const shareURL = `../html/result.html?data=${compressed}&editable=true`;
 
   const backdrop = document.createElement("div");
   backdrop.style.position = "fixed";
