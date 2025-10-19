@@ -40,3 +40,13 @@
     box-shadow: 0 2px 4px rgba(148, 170, 255, 0.3);
     background-color: rgba(120, 140, 230, 1); /* 少し濃いめで押した感 */
 }
+
+#video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: auto;
+  z-index: 10;
+}
