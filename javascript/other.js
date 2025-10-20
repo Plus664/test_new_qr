@@ -27,9 +27,7 @@ function startScan() {
         qrScanner.stop();
       }, 1000);
     },
-    /*(errorMessage)  => {
-      alert(errorMessage);
-    }*/
+
   );
 }*/
 
@@ -89,4 +87,5 @@ $(function() {
 
         $(this).toggleClass('active');
     });
+
 });
