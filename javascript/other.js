@@ -34,7 +34,7 @@ function startScan() {
 let hasScanned = false;
 let scanLoopId;
 
-document.getElementById("read_button").addEventListener("click", () => {
+//document.getElementById("read_button").addEventListener("click", () => {
   navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
     .then(stream => {
       const video = document.getElementById("video");
@@ -79,7 +79,7 @@ document.getElementById("read_button").addEventListener("click", () => {
     .catch(err => {
       alert("カメラの起動に失敗しました: " + err.message);
     });
-});
+//});
 
 $(function() {
     $('.hamburger').click(function() {
@@ -89,3 +89,4 @@ $(function() {
     });
 
 });
+
